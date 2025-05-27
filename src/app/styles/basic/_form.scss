@@ -1,0 +1,109 @@
+input,button{
+    padding:.2rem;
+    font-size:1rem;
+    line-height: 1.5rem;
+    border:0;
+    border-radius: 2px;
+    outline: none;    
+}
+button{
+    line-height:1.5rem;
+    font-size:.8rem;
+}
+
+.input-control{
+    margin:2em .1rem;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    input{
+        padding:0 0.5em;
+        font-size: large;
+        color:var(--dark,#000);
+        background-color: rgb(186, 207, 226);
+        border:0.1px solid  rgb(163, 185, 204);
+        border-radius: 5px;
+        line-height: 1.5em;
+    }
+    label{
+        position: absolute;
+        left:1em;
+        top:.2rem;
+        pointer-events: none;
+        color: var(--dark,#000);
+        transition: all 0.3s ease-in-out;
+        user-select: none;
+    }
+    input:focus ~ label,input:valid ~ label{
+        top:-2em;
+        font-size: small; 
+     
+            color: var(--background,#000);
+       
+    }
+    span{
+        color: var(--danger,#EE3C3C);
+        font-size: small;
+    }
+
+}
+.input-group{
+    position: relative;
+    display:flex;
+    flex-direction: row;
+    margin:0 !important;
+    padding:0 !important;
+}
+.form-action{
+    display: flex;
+    justify-content: center;
+    margin:1rem 0;
+}
+.input-form{
+    background-color: var(--light,#fff);
+    padding:.5rem;
+    margin-top:1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+textarea{
+    background-color: rgb(186, 207, 226);
+    border:0.1px solid  rgb(163, 185, 204);
+    border-radius:5px;
+    padding:10px;
+    font-family:poppins;
+    outline:none;
+    &:focus ~ label,&:valid ~ label{
+        top:-2em;
+        font-size: small;      
+        color: var(--background,#000);
+    }
+}
+select{
+    padding:0.1em 0.5em;
+    font-size: large;
+    color:var(--dark,#000);
+    background-color: rgb(186, 207, 226);
+    border:0.1px solid  rgb(163, 185, 204);
+    border-radius: 2px;
+    line-height: 2em;
+    &:focus ~ label,&:valid ~ label{
+        top:-2em;
+        font-size: small; 
+     
+            color: var(--background,#000);
+    }
+}
+.input-control.inline{
+    flex-direction: row;
+
+}
+label.no-animate{
+    position:relative;
+    display:inline-block;
+
+}
+input{
+    text-align: right !important;
+}

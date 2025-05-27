@@ -1,0 +1,31 @@
+ul{
+    list-style-type: none;
+}
+
+.btn{
+    padding:.2em;       
+}
+.btn-icon{
+    border-radius:5px;
+    margin: 0 .1em;
+    user-select: none;
+    cursor: pointer;
+    border:0;
+    outline: none;
+    &:hover{
+        background-color: var(--primary,#000);
+        color: var(--light,#fff);
+    }
+}
+.btn-info{
+    background-color: indigo;
+    color:var(--light,#fff);
+}
+.border-5{
+    border-radius: 5px;
+}
+.bordered{
+    padding:0.1rem;
+    border-radius:0.5rem;
+    
+}

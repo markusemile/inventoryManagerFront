@@ -1,0 +1,76 @@
+<div class="page-container flex center">
+    {{messageStatus}}
+    <ism-alert [message]="message" [status]="messageStatus" [duration]="1500" (reset)="resetMessage()"></ism-alert>
+    <form [formGroup]="myForm" (submit)="addEditProduct()">
+        <div class="page-header w-90">
+            <h3 class="title" [innerHTML]="isEditing ? 'Edit product' : 'Add new product'"></h3>
+            <div class="main-container w-100  flex dark background-white border-5 mr-5 p-5 warp">
+                <!-- right page -->
+                <div class="form-container w-50">
+                    <div class="input-control" *ngIf="isEditing">
+                        <input type="text" name="productId" id="id" [value]="this.myForm.get('productId')"
+                            formControlName="productId" required style="width:fit-content">
+                        <label for="productId">Product id</label>
+                    </div>
+                    <div class="input-control">
+                        <input type="text" name="name" id="id" [value]="this.myForm.get('name')" formControlName="name"
+                            style="width:90%" required>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-group flex-around w-90">
+                        <div class="input-control">
+                            <input type="text" name="sku" id="sku" [value]="this.myForm.get('sku')"
+                                formControlName="sku" required>
+                            <label for="sku">Sku</label>
+                        </div>
+                        <div class="input-control">
+                            <select name="categoryId" id="categoryId" [value]="this.myForm.get('categoryId')"
+                                formControlName="categoryId" required style="width:max-content">
+                                <option value=""></option>
+                                <option *ngFor="let category of allCategories" [value]="category.id">{{category.name}}
+                                </option>
+                            </select>
+                            <label for="categoryId">Category</label>
+                        </div>
+                    </div>
+                    <div class="input-group w-90 flex-around">
+                        <div class="input-control inline flex-around">
+                            <label for="price" class="no-animate">Price :</label>
+                            <input type="number" name="price" id="price" [value]="this.myForm.get('price')"
+                                formControlName="price" style="width:20%" required>
+                        </div>
+                        <div class="input-control inline flex-around">
+                            <label for="stockQuantity" class="no-animate">Quantity of stock :</label>
+                            <input type="text" name="stockQuantity" id="stockQuantity"
+                                [value]="this.myForm.get('stockQuantity')" formControlName="stockQuantity"
+                                style="width:20%" required>
+                        </div>
+                    </div>
+                    <div class="input-control w-90">
+                        <textarea name="description" id="id" [value]="this.myForm.get('description')"
+                            formControlName="description" required cols="200" rows="20" required></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <!-- left page -->
+                <div class="image-container w-50 flex-justify-top">
+                    <div class="flex center">
+                        <img  [src]="imagePreview" alt="Product picture" 
+                        style="width: 60%; height:auto; object-fit: cover; margin-bottom:4rem;">
+                    </div>
+                    <div class="input-control inline center">
+                        <label for="imageUrl" class="no-animate">Select product of picture:</label>
+                        <input #fileInput type="file"  name="imageUrl" id="imageUrl" style="display: none;"
+                            formControlName="imageUrl" (change)="onFileSelected($event)" >
+                        <button type="button" (click)="fileInput.click()" style="width:max-content" style="margin-left:2rem;">Choisir</button>
+                    </div>
+                </div>
+                <!-- actions -->
+                <div class="form-action center">
+                    <button type="submit" [innerText]="isEditing ? 'Update product' : 'Save product'" [disabled]="myForm.invalid"></button>
+                    <button type="reset">Reset</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

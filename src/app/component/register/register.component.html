@@ -1,0 +1,56 @@
+<div class="auth-container">
+    <form [formGroup]="myForm" (submit)="handleSubmit()">
+        <h2 class="title">Register form</h2>        
+        <div class="input-control">
+            <input type="text" name="name" id="name" formControlName="name" required>
+            <label for="name">Name</label>
+            @if(myForm.get('name')?.touched || myForm.get('name')?.dirty){
+                <span *ngIf="!myForm.get('name')?.valid" class="danger">* name is required</span>
+            }            
+        </div>        
+
+        <div class="input-control">
+            <input type="email" name="email" id="email" formControlName="email" required>
+            <label for="email">Email</label>
+            @if(myForm.get('email')?.touched && myForm.get('email')?.hasError('required')){
+                <span *ngIf="!myForm.get('email')?.valid" class="danger">* Email is required</span>
+            }
+            @if(myForm.get('email')?.touched  && myForm.get('email')?.hasError('email')){
+                <span *ngIf="!myForm.get('email')?.valid" class="danger">* Email is invalid</span>
+            }    
+        </div>
+
+        <div class="input-control">
+            <input type="text" name="password" id="password" formControlName="password" required>
+            <label for="password">Password</label>
+            @if(myForm.get('password')?.touched && myForm.get('password')?.hasError('required')){
+            <span *ngIf="!myForm.get('password')?.valid" class="danger">* Password is required</span>
+            }
+            @if(myForm.get('password')?.touched && myForm.get('password')?.hasError('minlength')){
+            <span *ngIf="!myForm.get('password')?.valid" class="danger">* Password require at least 6</span>
+            }
+        </div>
+
+        <div class="input-control">
+            <input type="text" name="passwordConfirm" id="passwordConfirm" required formControlName="passwordConfirm">
+            <label for="passwordConfirm">Confirm password</label>
+            @if(myForm.get('passwordConfirm')?.touched && myForm.get('passwordConfirm')?.hasError('required')){
+                <span *ngIf="!myForm.get('passwordConfirm')?.valid" class="danger">* You need to confirm your password</span>
+            }
+            @if(myForm.get('passwordConfirm')?.touched && myForm.hasError("passwordMatchValidator")){
+                <span class="danger">* password and confirmation of password not match</span>
+            }
+        </div>
+
+        <div class="input-control">
+            <input type="tel" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" required>
+            <label for="phoneNumber">Phone number</label>
+            @if(myForm.get('phoneNumber')?.touched || myForm.get('phoneNumber')?.dirty){
+            <span *ngIf="!myForm.get('phoneNumber')?.valid" class="danger">* phone number is required</span>
+            }
+        </div>
+            
+        <button type="submit" [disabled]="!myForm.valid" >submit</button>
+    </form>
+    
+</div>

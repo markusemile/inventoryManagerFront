@@ -1,0 +1,86 @@
+$card-size:200px;
+$card-margin:.5rem;
+$numCard : 10;
+$card-container-margin:2rem;
+
+
+.product-page{
+    .cards-container{
+        padding:0 calc(($card-container-margin * $numCard) / 2) !important;
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color:#fff;
+            width:$card-size;
+            height: calc($card-size * 1.5 + 150px);
+            margin:$card-margin;     
+            user-select: none;    
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0);  
+            transition: all 0.3s ease-in-out;
+            .image{
+                width: $card-size;
+                height:$card-size * 1.5;
+                overflow: hidden;
+                img{
+                    transition: all 0.3s ease-in-out;
+                    width:auto;
+                    height:100%;
+                }
+            }
+            .info-container{
+                padding-top:.2rem;
+                background-color: #fff;
+                transition: all 0.3s ease-in-out;
+                z-index:999999;
+                .card-name{
+                    margin:.2rem 0;
+                    padding:0 0.2rem;
+                    font-size:small;
+                    color:var(--dark,#000);
+                }
+                .btn{
+                    margin:.5rem 0;
+                }
+                .card-desc{
+                    padding:0 0.2rem;
+                    font-family: roboto;
+                    font-size:smaller;
+                    line-height: 1em;
+                    letter-spacing: 0.01em;
+                    color:var(--dark,#000);
+                    overflow: hidden;
+                    display: -webkit-box; /* Important pour utiliser -webkit-line-clamp */
+                    line-clamp: 10;
+                    -webkit-line-clamp: 4; /* Définit le nombre maximum de lignes à afficher */
+                    -webkit-box-orient: vertical; /* Définit l'orientation de la boîte à lignes */
+                }
+            }
+            .info-date{
+                padding:0 0.2rem;
+                font-size:smaller;
+                color:var(--dark,#000);
+                margin-top:auto;
+                margin-bottom:0;    
+
+            }
+            &:hover .info-container{
+                z-index:9999999;
+                margin-top:-150px;               
+                height:250px !important;
+                .card-desc{
+                    line-clamp: 14;
+                    -webkit-line-clamp: 14; /* Définit le nombre maximum de lignes à afficher */
+                }
+                
+            }
+            &:hover .image img{
+                transform: scale(1.1);
+            }
+        }
+
+    }
+    .list-container{
+
+    }
+}

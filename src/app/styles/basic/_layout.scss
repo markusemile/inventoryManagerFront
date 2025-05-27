@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-container{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width:100%;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.col-start{ align-content: flex-start; }
+.flex-justify-top{
+    display:flex;
+    flex-direction: column;
+    height:100%;
+    justify-content: flex-start;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.nowrap{
+    flex-wrap: nowrap;
+}
+.center{
+    justify-content: center;
+}
+.flex-between{
+    justify-content: space-between;
+}
+.flex-around{
+    justify-content: space-around;
+}
+
+.w-100{
+    width:100% !important;
+}
+.w-90{
+    width:90% !important;
+}
+.w-50{
+    width:50% !important;
+}
+
+.p-5{
+    padding:5px;
+}
+.pl-5{
+    padding-left:5px;
+}
+.pr-5{
+    padding-right:5px;
+}
+.pt-5{
+    padding-top:5px;
+}
+.pb-5{
+    padding-bottom:5px;
+}
+.center{
+    margin: auto;
+}
+.m-5{
+    margin:5px;
+}
+.ml-auto{
+    margin-left: auto;
+}
+.ml-5{
+    margin-left:5px;
+}
+.mr-0{
+    margin-right: 0;
+}
+.mr-5{
+    margin-right:50px;
+}
+.mt-5{
+    margin-top:5px;
+}
+.mb-5{
+    margin-bottom:5px;
+}
+
+
+
+// position
+.p-relative{
+    position: relative;
+}
+.p-absolute{
+    position: absolute;
+}
+.p-bottom-start{
+    left:0;
+    bottom:0;
+}

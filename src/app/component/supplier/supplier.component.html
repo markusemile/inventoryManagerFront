@@ -1,0 +1,78 @@
+<div class="page-container">
+    <ism-alert [message]="this.message" [status]="this.messageStatus" [duration]="1500" (reset)="resetMessage()"></ism-alert>
+    <div class="page-header">
+        <h3 class="title">Supplier board</h3>
+    </div>
+    <ul class="items-list" *ngIf="suppliers.length > 0 ">
+        <div class="input-form add-supplier">
+            <button type="button" class="bg-success" (click)="this.showModal=!this.showModal">Add supplier</button>
+        </div>
+        <li class="item" *ngFor="let supplier of suppliers">
+            <span class="bolder">{{supplier.name}}</span> : {{supplier.address|addressFormater}}
+            <span class="item-action">
+                <button type="button" class="button btn bg-primary light"
+                    (click)="handleEditSupplier(supplier)">Edit</button>
+                <button type="button" class="button btn bg-danger light"
+                    (click)="handleDeleteSupplier(supplier.id)">Delete</button>
+            </span>
+        </li>
+    </ul>
+    <ng-container *ngIf="showModal">
+        <ng-container class="modal" *ngTemplateOutlet="modale"></ng-container>
+    </ng-container>
+</div>
+
+<ng-template #modale>
+    <div class="modale-wrapper">
+        <div class="modale">
+            <span class="close-button" (click)="closeModal()">X</span>
+            <h3 class="title dark">{{isEditing ? 'Edit' : 'New'}} supplier</h3>
+            <form (submit)="updateSupplier()" [formGroup]="myForm" class="formular">
+
+                <div class="input-control" *ngIf="isEditing">
+                    <input type="text" name="id" [value]="supplierId" formControlName="id" required>
+                </div>
+                <div class="input-control">
+                    <input type="text" name="name" [value]="supplierName" formControlName="name" required>
+                    <label for="name">Name</label>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-control">
+                        <input type="text" name="street" [value]="this.myForm.get('street')?.value" formControlName="street" required>
+                        <label for="street">Street</label>
+                    </div>
+                    <div class="input-control">
+                        <input type="text" name="number" [value]="this.myForm.get('number')?.value" formControlName="number" size="5"
+                            required>
+                        <label for="number">Nbr</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-control">
+                        <input type="text" name="postalCode" [value]="this.myForm.get('postalCode')?.value" formControlName="postalCode"
+                            size="5" required>
+                        <label for="postalCode">Post code</label>
+                    </div>
+                    <div class="input-control">
+                        <input type="text" name="city" [value]="this.myForm.get('city')?.value" formControlName="city" required>
+                        <label for="city">City</label>
+                    </div>
+                </div>
+                <div class="input-control">
+                    <input type="text" name="country" [value]="this.myForm.get('country')?.value" formControlName="country" required>
+                    <label for="country">Country</label>
+                </div>
+                <div class="form-action">
+
+                    <button *ngIf="!isEditing" type="submit" [disabled]="!myForm.valid" (click)="addSupplier()">Save new
+                        supplier</button>
+                    <button *ngIf="isEditing" type="submit" [disabled]="!myForm.valid" (click)="updateSupplier()">Update
+                        supplier</button>
+
+                    <button type="reset">Reset form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

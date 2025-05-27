@@ -1,0 +1,21 @@
+<div class="category-page">
+    <div class="category-header">
+        <h3 class="title">Categories board</h3>
+        <div class="input-form add-category">
+            <input type="text" [(ngModel)]="categoryName" placeholder="category name...">
+            <button *ngIf="!isEditing" type="button" (click)="addCategory()">Add category</button>
+            <button *ngIf="isEditing" type="button" (click)="editCategory()">Edit category</button>
+        </div>
+        <ism-alert [message]="this.message" [status]="+this.messageStatus"></ism-alert>
+    </div>
+    <ul class="category-list" *ngIf="categories.length > 0 ">
+        <li class="category-item" *ngFor="let category of categories">
+            <span>{{category.name}}</span>
+             <div class="category-action">
+                <button type="button" class="button btn bg-primary light" (click)="handleEditCategory(category)">Edit</button>
+                <button type="button" class="button btn bg-danger light" (click)="handleDeleteCategory(category.id)">Delete</button>
+             </div>
+        </li>
+    </ul>
+
+</div>

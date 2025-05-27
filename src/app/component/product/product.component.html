@@ -1,0 +1,61 @@
+
+<ism-alert [message]="this.message" [status]="+this.messageStatus"></ism-alert>
+<div class="product-page">
+    <div class="product-header flex">
+        <h3 class="title w-100">Products board</h3>
+        <div class="flex ml-auto mr-5" style="justify-content:flex-end;">
+            <div class="input-control">
+                <input type="text" placeholder="Search" style="width:fit-content" [(ngModel)]="searchText" (input)="searchProduct()">
+            </div>
+            <span class="icon btn btn-icon background-light dark" (click)="showLikeList=false">apps</span>
+            <span class="icon btn btn-icon background-light dark" (click)="showLikeList=true">view_list</span>
+        </div>
+    </div>
+    @if(!showLikeList){
+        <ng-container>            
+            <div  *ngIf="products" class="cards-container flex">          
+                <div class="card p-relative" *ngFor="let product of products">
+                    <div class="image p-relative">
+                        <img [src]="getThumbnailUrl(product.imageUrl)" alt="">
+                    </div>
+                    <div class="info-container col-start" style="height:120px; overflow: hidden;">
+                        <span class="btn btn-info">{{getCategoryName(product.categoryId)}}</span>
+                        <h3 class="card-name" [innerText]="product.name.split('-')[0]"></h3>
+                        <small class="card-ku" [innerText]="product.sku"></small>
+                        <p class="card-desc" [innerText]="product.description"></p>
+                    </div>
+                    <div class="info-date flex" >
+                        <span [innerHTML]="product.updateAt | timeBetweenNow : product.createAt"></span>
+                        <div style="margin-left:auto;padding:0.2rem;">
+                            <span class="bordered icon icon-small bg-primary light" style="margin-right:0.5rem;" (click)="editProduct(product.id)" title="edit">edit</span>
+                            <span class="bordered icon icon-small bg-danger light" title="delete" (click)="deleteProduct(product.id)">delete</span>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </ng-container>
+    }
+    @if(showLikeList){
+        <ng-container>
+            <div class="list-container" title="list">
+                <ul class="list-of-items" style="margin-top:1rem" *ngIf="products">
+                    <li class="item flex" style="margin-top:1rem" *ngFor="let product of products">
+                        <span class=""> {{product.name}} </span>
+                        <div class="item-action ml-auto mr-5">
+                            <button type="button" class="button btn bg-primary light">Edit</button>
+                            <button type="button" class="button btn bg-danger light">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+        }
+     @if(totalPages > 1){
+         <div>
+           <ism-pagination class="flex w-100 center" [totalPage]="totalPages" [totalItems]="totalItems" [itemsPerPage]="numbOfCard" (pageChanged)="pageChanged($event)"></ism-pagination>
+         </div>
+     }
+</div>
+    

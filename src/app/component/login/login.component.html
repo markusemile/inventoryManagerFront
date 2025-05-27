@@ -1,0 +1,29 @@
+<div class="auth-container">
+    <form [formGroup]="myForm" (submit)="handleSubmit()">
+        <h2 class="title">Login form</h2>        
+        <div class="input-control">
+            <input type="email" name="email" id="email" formControlName="email" required>
+            <label for="email">Email</label>
+            @if(myForm.get('email')?.touched && myForm.get('email')?.hasError('required')){
+                <span *ngIf="!myForm.get('email')?.valid" class="danger">* Email is required</span>
+            }
+            @if(myForm.get('email')?.touched  && myForm.get('email')?.hasError('email')){
+                <span *ngIf="!myForm.get('email')?.valid" class="danger">* Email is invalid</span>
+            }    
+        </div>
+
+        <div class="input-control">
+            <input type="text" name="password" id="password" formControlName="password" required>
+            <label for="password">Password</label>
+            @if(myForm.get('password')?.touched && myForm.get('password')?.hasError('required')){
+            <span *ngIf="!myForm.get('password')?.valid" class="danger">* Password is required</span>
+            }
+            @if(myForm.get('password')?.touched && myForm.get('password')?.hasError('minlength')){
+            <span *ngIf="!myForm.get('password')?.valid" class="danger">* Password require at least 6</span>
+            }
+        </div>      
+            
+        <button type="submit" [disabled]="!myForm.valid" >submit</button>
+    </form>
+    
+</div>

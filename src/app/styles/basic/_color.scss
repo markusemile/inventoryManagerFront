@@ -1,0 +1,76 @@
+@use "sass:color";
+
+$light: #e2dede;
+$dark: #010D17;
+$primary: #0b72e9;
+$secondary: #505D7C;
+$background: #1A253F;
+$success: #00AAA0;
+$danger:#EE3C3C;
+$warning: #FFB000;
+
+
+:root{
+    --light: #{$light};
+    --light-hover:#{color.scale( $light, $lightness: 30%)};
+    --dark: #{$dark};
+    --dark-hover:#{color.scale( $dark, $lightness: 10%)};
+    --primary: #{$primary};
+    --primary-hover:#{color.scale( $primary, $lightness: 10%)};
+    --secondary: #{$secondary};
+    --secondary-hover: #{color.scale( $secondary, $lightness: 10%)};
+    --background: #{$dark};
+    --background-hover: #{color.scale( $background, $lightness: 10%)};
+    --success: #{$success};
+    --success-hover: #{color.scale( $success, $lightness: 10%)};
+    --danger: #{$danger};
+    --danger-hover: #{color.scale( $danger, $lightness: 10%)};
+    --warning: #{$warning};
+    --warning-hover: #{color.scale( $warning, $lightness: 10%)};
+}
+
+html,body{
+    background-color: $background;
+}
+html,body,a{
+    color: $light;
+}
+.light{
+    color:$light;
+}
+.dark{
+    color:$dark;
+}
+.danger{
+    color: $danger;
+}
+.success{
+    color: $success;
+}
+.info{
+    color: $primary;
+}
+.bg-danger{
+    background-color: $danger !important;
+    &:hover{
+        background-color: color.scale( $danger, $lightness: 30%) !important;
+    }
+}
+.bg-success{
+    background-color: $success !important;
+    &:hover{
+        background-color: color.scale( $success, $lightness: 30%) !important;
+    }
+}
+.bg-primary{
+    background-color: $primary !important;
+    &:hover{
+        background-color: color.scale( $primary, $lightness: 30%) !important;
+    }
+}
+.background-light{
+    background-color: $light;
+}
+.background-white{
+    background-color: #fff;
+}

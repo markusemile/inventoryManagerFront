@@ -1,0 +1,31 @@
+.alert-component{
+    width:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    text-align: center;
+    transition: opacity 3s ease-in-out;
+}
+.alert-component.visible{
+    animation: slideInOut 3s ease-in-out forwards;
+}
+
+.danger{
+    color: var(--danger,red);
+}
+.success{
+    color: var(--success,green);
+}
+.bg-danger{
+    background-color: var(--danger,red);
+}
+.bg-success{
+    background-color: var(--success,green);
+}
+@keyframes slideInOut {
+    0% { opacity: 0;}
+    5% { opacity: 1;}
+    85% { opacity: 1;}
+    100% {opacity: 0;}
+    }
