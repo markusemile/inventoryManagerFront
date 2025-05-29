@@ -53,8 +53,8 @@
         </ng-container>
         }
      @if(totalPages > 1){
-         <div>
-           <ism-pagination class="flex w-100 center" [totalPage]="totalPages" [totalItems]="totalItems" [itemsPerPage]="numbOfCard" (pageChanged)="pageChanged($event)"></ism-pagination>
+         <div class="w-100 flex center">
+           <ism-pagination class="flex w-100 center" [currentPage]="currentPage" [totalPage]="totalPages" [totalItems]="totalItems" [itemsPerPage]="numbOfCard" (getPage)="getPage($event)"></ism-pagination>
          </div>
      }
 </div>

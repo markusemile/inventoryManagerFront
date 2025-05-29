@@ -4,7 +4,7 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { AlertComponent } from '../../share/component/alert/alert.component';
 import { TimeBetweenNowPipe } from '../../share/pipe/time-between-now.pipe';
 import { Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../share/component/pagination/pagination.component';
 
 interface Product{
@@ -36,6 +36,7 @@ export class ProductComponent  implements OnInit{
   private apiService = inject(ApiService);
   private route = inject(Router);
 
+
   message: string ='';
   messageStatus: number = 0;
   messageVisible: boolean = false;
@@ -51,9 +52,14 @@ export class ProductComponent  implements OnInit{
   numbOfCard = 10;
   totalPages! : number;
   totalItems! : number;
+  currentPage : number=0;
 
   ngOnInit():void{
     this.getProduct();       
+    // on check si on a des params dans notre url    
+    // si oui on les recupere
+    // searchText = searchParams.get('query');
+    // currentPage = searchParams.get('page');
     this.getCategory();
   }
 
@@ -66,16 +72,21 @@ export class ProductComponent  implements OnInit{
           this.products=res.products  
           this.totalPages=res.totalPages;
           this.totalItems=res.totalElements;
+          this.currentPage=res.currentPage;
         }
       },error: (error)=>{ this.handleError(error) }      
     })
   }
 
   searchProduct() :void {
+    this.currentPage = 0;
       this.apiService.searchProducts(this.searchText).subscribe({
         next: (res:any)=>{
           if(res.status===200){
             this.products=res.products  
+            this.totalPages=res.totalPages;
+            this.totalItems=res.totalElements;
+            this.currentPage=res.currentPage;
           }
         },error: (error)=>{ this.handleError(error) }
       })
@@ -100,6 +111,7 @@ export class ProductComponent  implements OnInit{
   editProduct(id:number){
     this.route.navigate(['product/edit',id]);
   }
+
   deleteProduct(id:number){
     if(!confirm("Are you sure, you want to delete this product ?")) return;
     this.apiService.deleteProduct(id).subscribe({
@@ -133,8 +145,20 @@ export class ProductComponent  implements OnInit{
     return finalPath;
   }
 
-  pageChanged(e:any){
-
+  getPage(e:any){
+    console.log(e);
+    this.apiService.getAllProducts(this.searchText,e).subscribe({
+       next: (res:any)=>{       
+        if(res.status===200){
+          console.log(res);
+          this.products=res.products  
+          this.totalPages=res.totalPages;
+          this.totalItems=res.totalElements;
+          this.currentPage=res.currentPage;
+        }
+      },error: (error)=>{ this.handleError(error) }    
+    })
+    
   }
 
 }
